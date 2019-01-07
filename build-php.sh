@@ -2,6 +2,8 @@
 
 set -xeEuo pipefail
 
+export DOCKER_BUILDKIT=1
+
 declare -r IMAGE=$1
 
 declare -r VERSION_PHP=$2
