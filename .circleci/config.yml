@@ -146,6 +146,8 @@ jobs:
   build-http:
     machine: true
     steps:
+      - setup_remote_docker:
+          version: 18.09.0-ce
       - checkout
       - run: make build-http
       - run: cat ./tmp/build-http.tags | xargs -I % docker inspect --format='%={{.Id}}:{{index .ContainerConfig.Env 1}}' %
@@ -158,6 +160,8 @@ jobs:
   build-fpm:
     machine: true
     steps:
+      - setup_remote_docker:
+          version: 18.09.0-ce
       - checkout
       - run: make build-fpm
       - run: cat ./tmp/build-fpm.tags | xargs -I % docker inspect --format='%={{.Id}}:{{index .ContainerConfig.Env 8}}' %
@@ -170,6 +174,8 @@ jobs:
   build-cli:
     machine: true
     steps:
+      - setup_remote_docker:
+          version: 18.09.0-ce
       - checkout
       - run: make build-cli
       - run: cat ./tmp/build-cli.tags | xargs -I % docker inspect --format='%={{.Id}}:{{index .ContainerConfig.Env 7}}' %
