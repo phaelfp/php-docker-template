@@ -11,6 +11,7 @@ COPY src/php/utils/docker/ /usr/local/bin/
 # Install PHP extensions
 RUN set -x \
     && apk add --no-cache --virtual .phpize-deps $PHPIZE_DEPS \
+    && pecl channel-update pecl.php.net \
     && docker-php-ext-install pcntl \
     && docker-php-ext-install opcache \
     && pecl install apcu \
